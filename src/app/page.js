@@ -42,7 +42,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-stone-50 text-neutral-900 font-serif">
       <Navbar />
-      {/* <CoverStory /> */}
+      <CoverStory />
       {/* <DepartmentsSection /> */}
       {/* <FeaturedInsights /> */}
       {/* <WeeklyDispatch /> */}

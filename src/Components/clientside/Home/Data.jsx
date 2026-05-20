@@ -37,7 +37,6 @@ export const stats = [
   ["06", "EDITORIAL SECTIONS"],
   ["2022", "FOUNDED IN"],
 ];
-
 export const ticker = [
   "BUSINESS", "MARKETING", "B2B", "DESIGN", "TECHNOLOGY",
   "FASHION", "STRATEGY", "CRAFT", "BUSINESS",
