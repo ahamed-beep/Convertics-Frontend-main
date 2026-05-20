@@ -26,7 +26,7 @@ export default function CoverStory() {
           A FIELD GUIDE FOR BUILDERS
         </p>
 
-        <div className="mt-3 grid grid-cols-1 lg:grid-cols-3 gap-8 items-end">
+        <div className="mt-3 grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-end">
           <h1
             id="cover-story-heading"
             className="lg:col-span-2 text-4xl font-bold font-fraunces sm:text-6xl lg:text-7xl leading-[1.02] tracking-tighter"
@@ -78,7 +78,7 @@ export default function CoverStory() {
         </div>
       </div>
 
-      <div className="mt-8 bg-[#171A21] text-neutral-300 text-[10px] sm:text-xs tracking-[0.25em] font-jetbrains-mono overflow-hidden">
+      <div className= " mt-1 md:mt-8 bg-[#171A21] text-neutral-300 text-[10px] sm:text-xs tracking-[0.25em] font-jetbrains-mono overflow-hidden">
         <div className="flex animate-ticker whitespace-nowrap">
           {[...ticker, ...ticker].map((t, i) => (
             <span key={i} className="flex items-center gap-6 px-3 py-3">
