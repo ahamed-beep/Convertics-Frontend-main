@@ -43,11 +43,11 @@ export default function HomePage() {
     <main className="min-h-screen bg-stone-50 text-neutral-900 font-serif">
       <Navbar />
       <CoverStory />
-      {/* <DepartmentsSection /> */}
-      {/* <FeaturedInsights /> */}
-      {/* <WeeklyDispatch /> */}
-      {/* <CtaNewsletter /> */}
-      {/* <Footer /> */}
+      <DepartmentsSection />
+      <FeaturedInsights />
+      {/* <WeeklyDispatch />
+      <CtaNewsletter /> */}
+      <Footer />
     </main>
   );
 }
