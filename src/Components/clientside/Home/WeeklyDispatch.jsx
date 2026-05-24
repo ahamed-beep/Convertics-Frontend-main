@@ -3,67 +3,77 @@ import { dispatch, sidebarArticles } from "./Data";
 
 export default function WeeklyDispatch() {
   return (
-    <section aria-labelledby="dispatch-heading" className="border-b border-neutral-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="flex justify-between items-end mb-8">
+    <section aria-labelledby="dispatch-heading" className="bg-[#F2EEE8]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-13 lg:py-20">
+        <div className="flex md:flex-row flex-col justify-between md:items-end gap-3 pb-4 border-b border-[#171A21] mb-8">
           <div>
-            <p className="text-[10px] tracking-[0.2em] font-sans text-neutral-500 mb-2">¶ THE JOURNAL</p>
-            <h2 id="dispatch-heading" className="text-4xl sm:text-5xl font-bold">
-              This <em className="italic font-normal">week&apos;s</em> dispatch.
+            <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">¶ THE JOURNAL</p>
+            <h2 id="dispatch-heading" className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+              This <span className="font-charm font-medium italic tracking-wide">week&apos;s</span> dispatch.
             </h2>
           </div>
-          <a href="/archive" className="text-[10px] tracking-[0.2em] font-sans text-neutral-600">FULL ARCHIVE →</a>
+          <a href="/archive" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">FULL ARCHIVE →</a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Image
-              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80"
+              src="/Images/week.webp"
               alt="Verpex Hosting article cover"
               width={1200}
               height={384}
-              className="w-full h-64 sm:h-96 object-cover rounded bg-blue-900"
+              className="w-full sm:h-80  lg:w-220 lg:h-140 object-cover rounded-[20px]"
             />
-            <p className="mt-4 text-[10px] tracking-[0.2em] font-sans text-neutral-500">
-              TECHNOLOGY · APR 24 · 8 MIN READ
+            <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase mt-4 sm:mt-6">
+              TECHNOLOGY <span className="text-[#575E6B]">· APR 24 · 8 MIN READ</span>
             </p>
-            <h3 className="mt-2 text-2xl sm:text-4xl font-bold leading-tight">
+            <h3 className="mt-1 sm:mt-4 font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
               Verpex Hosting: Fast, Reliable &amp; Budget-Friendly
             </h3>
-            <p className="mt-3 font-sans text-sm text-neutral-600 max-w-xl">
+            <p className="mt-2 sm:mt-6 font-inter font-normal text-base sm:text-xl text-[#575E6B] max-w-xl">
               A complete breakdown of Verpex hosting — performance, pricing, and whether it&apos;s the right choice for your website.
             </p>
-            <p className="mt-2 font-sans text-xs text-neutral-500">— BY M. SHAFER</p>
+            <p className="mt-2 sm:mt-6 font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">— BY M. SHAFER</p>
           </div>
 
           <aside aria-label="More articles" className="space-y-5">
             {sidebarArticles.map((s) => (
-              <article key={s.title} className="flex gap-4 border border-neutral-300 rounded p-4">
-                <div className="w-16 h-16 bg-blue-500 rounded shrink-0" aria-hidden="true" />
+              <article key={s.title} className="flex gap-4">
+                <img src={s.img} alt="img" width={100} height={100} className="w-32 h-32 object-cover" />
                 <div>
-                  <p className="text-[10px] tracking-[0.2em] font-sans text-neutral-500">{s.tag}</p>
-                  <h4 className="font-bold text-base leading-snug mt-1">{s.title}</h4>
-                  <p className="font-sans text-xs text-neutral-500 mt-2">{s.author} · {s.read}</p>
+                  <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">{s.tag}</p>
+                  <h4 className="font-fraunces font-semibold text-base sm:text-xl text-[#171A21] tracking-tight leading-snug mt-1">{s.title}</h4>
+                  <p className="font-jetbrains-mono font-medium tracking-wide text-[10px] sm:text-xs uppercase mt-2 text-[#575E6B]">{s.author} · {s.read}</p>
                 </div>
               </article>
             ))}
           </aside>
         </div>
 
-        <p className="mt-10 text-[10px] tracking-[0.2em] font-sans text-neutral-500">¶ ALSO IN THIS ISSUE →</p>
-        <nav aria-label="Also in this issue" className="mt-3 divide-y divide-neutral-300 border-t border-b border-neutral-300">
-          {dispatch.map((d) => (
+        <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase border-t border-[#D3CCC5] py-4 sm:py-6 mt-3 md:mt-10">¶ ALSO IN THIS ISSUE →</p>
+        <nav aria-label="Also in this issue" className="divide-y divide-[#D3CCC5] border-t border-[#D3CCC5]">
+          {dispatch.map((s) => (
             <a
-              href={`/journal/${d.title.toLowerCase().replace(/\s+/g, "-")}`}
-              key={d.title}
-              className="grid grid-cols-12 gap-4 py-4 items-center hover:bg-neutral-100 px-2"
+              href={`/sections/${s.title.toLowerCase()}`}
+              key={s.title}
+              className="grid grid-cols-12 gap-x-4 gap-y-1 py-4 sm:py-6 items-center hover:bg-neutral-100 transition-colors px-2"
             >
-              <span className="col-span-1 text-xs font-sans text-neutral-500">{d.n}</span>
-              <span className="col-span-7 sm:col-span-8 font-bold text-base sm:text-lg">{d.title}</span>
-              <span className="col-span-2 text-[10px] tracking-[0.2em] font-sans text-neutral-500">{d.tag}</span>
-              <span className="col-span-2 text-right text-[10px] tracking-[0.2em] font-sans text-neutral-500">
-                {d.author} · {d.read}
+              <span className="col-span-1 text-xs font-jetbrains-mono font-medium text-[#575E6B]">
+                {s.n}
               </span>
+
+              <span className="col-span-11 sm:col-span-6 md:col-span-5 lg:col-span-6 text-sm sm:text-base md:text-xl lg:text-2xl font-fraunces font-normal text-[#171A21]">
+                {s.title}
+              </span>
+
+              <span className="hidden md:block sm:col-span-3 md:col-span-3 lg:col-span-2 font-inter text-xs md:text-sm text-[#575E6B]">
+                {s.tag}
+              </span>
+
+              <span className="col-start-2 col-span-11 sm:col-span-5 md:col-start-auto md:col-span-3 lg:col-span-3 font-jetbrains-mono font-bold text-[10px] sm:text-xs md:text-sm tracking-[1.34px] uppercase text-[#575E6B] sm:text-right">
+                {s.author} · {s.read}
+              </span>
+
             </a>
           ))}
         </nav>
