@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Navbar() {
@@ -32,10 +33,12 @@ export default function Navbar() {
             aria-label="Main navigation"
             className="hidden md:flex font-inter font-thin items-center gap-8 text-sm text-[#171A21]"
           >
-            <a href="/journal">Journal</a>
-            <a href="/sections">Sections</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
+            <Link href="/blog">Blog</Link>
+            <Link href="/featured">Featured</Link>
+            <Link href="/about">About</Link>
+            <Link href="/resources">Resources</Link>
+
+            <Link href="/contact">Contact</Link>
           </nav>
 
           {/* Desktop subscribe */}
