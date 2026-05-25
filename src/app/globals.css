@@ -11,6 +11,7 @@
   --font-fraunces: var(--font-fraunces);
   --font-inter: var(--font-inter);
   --font-jetbrains-mono: var(--font-jetbrains-mono);
+  --font-charm: var(--font-charm);
 }
 
 @media (prefers-color-scheme: dark) {
