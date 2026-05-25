@@ -35,16 +35,16 @@ export default function AboutConvertica() {
       </p>
 
       <div className="mt-10 overflow-hidden rounded-lg">
-        <img
-          src="/Images/about/about.webp"
-          alt="Convertica editorial team working together"
-          loading="lazy"
-          decoding="async"
-          width={1280}
-          height={720}
-          className="w-full h-full object-cover"
-        />
-      </div>
+  <img
+    src="/Images/about/about.webp"
+    alt="Convertica editorial team working together"
+    loading="lazy"
+    decoding="async"
+    width={1280}
+    height={720}
+    className="w-full h-64 sm:h-96 md:h-full object-cover"
+  />
+</div>
       <Stats/>
         </div>
         <Ticker/>
