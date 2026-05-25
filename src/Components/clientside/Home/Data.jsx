@@ -20,15 +20,15 @@ export const dispatch = [
 ];
 
 export const businessArticles = [
-  { img: "https://images.unsplash.com/photo-1552581234-26160f608093?w=600&q=80", title: "Scaling Smart: How to Grow Without Burning Out", desc: "Discover practical strategies to sustain your business confidently—without sacrificing your time, team, or sanity." },
-  { img: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&q=80", title: "Top Tools Every Modern Business Needs in 2026", desc: "From automation to analytics, explore the essential tools helping businesses stay competitive and efficient." },
-  { img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80", title: "From Idea to Income: Building a Profitable Business", desc: "Learn how to validate ideas, attract customers, and turn your concept into a revenue-generating machine." },
-  { img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", title: "Marketing That Works: Strategies for Real Growth", desc: "Cut through the noise in marketing tactics that actually try to bring real ROI and impressions." },
+  { img: "/Images/business1.webp", title: "Scaling Smart: How to Grow Without Burning Out", desc: "Discover practical strategies to sustain your business confidently—without sacrificing your time, team, or sanity." },
+  { img: "/Images/business2.webp", title: "Top Tools Every Modern Business Needs in 2026", desc: "From automation to analytics, explore the essential tools helping businesses stay competitive and efficient." },
+  { img: "/Images/business3.webp", title: "From Idea to Income: Building a Profitable Business", desc: "Learn how to validate ideas, attract customers, and turn your concept into a revenue-generating machine." },
+  { img: "/Images/business4.webp", title: "Marketing That Works: Strategies for Real Growth", desc: "Cut through the noise in marketing tactics that actually try to bring real ROI and impressions." },
 ];
 
 export const sidebarArticles = [
-  { tag: "TECHNOLOGY", title: "Cloudways, Explained", author: "L. PUTRI", read: "6 MIN" },
-  { tag: "BUSINESS", title: "The Domains & Hosting Field Guide", author: "L. MORRIS", read: "10 MIN" },
+  { tag: "TECHNOLOGY", img: "/Images/cloud.webp", title: "Cloudways, Explained", author: "L. PUTRI", read: "6 MIN" },
+  { tag: "BUSINESS", img: "/Images/domain.webp", title: "The Domains & Hosting Field Guide", author: "L. MORRIS", read: "10 MIN" },
 ];
 
 export const stats = [

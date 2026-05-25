@@ -45,8 +45,8 @@ export default function HomePage() {
       <CoverStory />
       <DepartmentsSection />
       <FeaturedInsights />
-      {/* <WeeklyDispatch />
-      <CtaNewsletter /> */}
+      <WeeklyDispatch />
+      <CtaNewsletter />
       <Footer />
     </main>
   );

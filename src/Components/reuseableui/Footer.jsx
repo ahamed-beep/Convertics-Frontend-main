@@ -11,7 +11,7 @@ export default function Footer() {
       <section aria-hidden="true">
         <div className="px-3 sm:px-6 py-8 sm:py-12 overflow-hidden border-b border-t border-[#171A21]">
           <p
-            className="font-bold leading-none tracking-tighter select-none whitespace-nowrap text-center"
+            className="font-fraunces font-black leading-none tracking-tighter select-none whitespace-nowrap text-center"
             style={{ fontSize: "clamp(2.5rem, 16.5vw, 160rem)" }}
           >
             Convertics<span className="text-blue-500">.</span>
