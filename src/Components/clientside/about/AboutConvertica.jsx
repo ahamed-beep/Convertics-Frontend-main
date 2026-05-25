@@ -7,7 +7,7 @@ export default function AboutConvertica() {
   return (
     <section
       aria-labelledby="about-heading"
-      className="mx-auto  pb-20 pt-13  md:py-20 text-center"
+      className="mx-auto pb-10 md:pb-20 pt-13  md:py-20 text-center"
     >
         <div className="px-6 mb-6 md:mb-15 " >
 
