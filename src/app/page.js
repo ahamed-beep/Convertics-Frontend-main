@@ -1,8 +1,8 @@
 import CoverStory from "@/Components/clientside/Home/Coverstory";
-import CtaNewsletter from "@/Components/clientside/Home/CtaNewsletter";
 import DepartmentsSection from "@/Components/clientside/Home/DepartmentsSection";
 import FeaturedInsights from "@/Components/clientside/Home/FeaturedInsights";
 import WeeklyDispatch from "@/Components/clientside/Home/WeeklyDispatch";
+import CtaBanner from "@/Components/reuseableui/CtaBanner";
 import Footer from "@/Components/reuseableui/Footer";
 import Navbar from "@/Components/reuseableui/Navbar";
 
@@ -46,7 +46,7 @@ export default function HomePage() {
       <DepartmentsSection />
       <FeaturedInsights />
       <WeeklyDispatch />
-      <CtaNewsletter />
+      <CtaBanner />
       <Footer />
     </main>
   );

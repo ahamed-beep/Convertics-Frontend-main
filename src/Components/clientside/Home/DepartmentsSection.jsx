@@ -4,12 +4,12 @@ import { sections, businessArticles } from "./Data";
 export default function DepartmentsSection() {
   return (
     <section aria-labelledby="departments-heading">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div className="flex md:flex-row flex-col justify-between md:items-end gap-3 pb-4 border-b border-[#171A21]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-2 py-12">
+        <div className="flex md:flex-row flex-col justify-between md:items-end gap-3 pb-6 border-b border-[#171A21]">
           <div>
             <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">§ Sections</p>
             <h2 id="departments-heading" className="font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold leading-[35px] sm:leading-[50px] lg:leading-[60px] tracking-tight">
-              Six desks, one <span className="font-charm font-medium italic">obsession</span>:<br /> growth.
+              Six desks, one <span className=" font-fraunces italic font-thin ">obsession</span>:<br /> growth.
             </h2>
           </div>
           <a href="/sections" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">
@@ -17,9 +17,9 @@ export default function DepartmentsSection() {
           </a>
         </div>
 
-        <div className="bg-[#3B82F6] text-white rounded-[14px] p-4 sm:p-8 shadow-sm -mx-4 sm:mx-auto mt-7 md:mt-10">
+        <div className="bg-[#3B82F6] text-white rounded-[14px] p-4 sm:px-8 sm:py-8 shadow-sm  sm:mx-auto mt-7 md:mt-10">
           <div className="flex md:flex-row flex-col gap-2 justify-between items-center tracking-[0.2em] border-b border-white pb-6 -mx-5 sm:-mx-8 px-4">
-            <div className="flex md:contents items-center gap-3">
+            <div className="flex md:contents pt-3 md:pt-0 items-center gap-3">
               <span className="font-jetbrains-mono font-medium text-xs md:text-sm opacity-70">01</span>
               <h3 className="font-fraunces text-3xl sm:text-4xl font-medium tracking-[-0.9px] lg:-ml-25">Business</h3>
             </div>
@@ -28,7 +28,7 @@ export default function DepartmentsSection() {
             </p>
             <span className="font-jetbrains-mono font-semibold text-[10px] md:text-xs tracking-[1.34px] uppercase">28 ESSAYS →</span>
           </div>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 lg:mx-6 xl:mx-20">
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-4 lg:mx-6 xl:mx-20">
             {businessArticles.map((a) => (
               <article key={a.title} className="flex gap-2 sm:gap-3 md:flex-col lg:items-start items-center justify-center lg:flex-row">
                 <Image

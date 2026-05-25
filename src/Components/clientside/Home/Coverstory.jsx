@@ -1,5 +1,8 @@
+// components/home/CoverStory.jsx
+import Stats from "@/Components/reuseableui/Stats";
+import Ticker from "@/Components/reuseableui/Ticker";
 import Image from "next/image";
-import { stats, ticker } from "./Data";
+
 
 export default function CoverStory() {
   return (
@@ -68,26 +71,10 @@ export default function CoverStory() {
           </div>
         </div>
 
-        <div className="mt-8 md:mt-14 border-t border-[#171A21] grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-          {stats.map(([n, l], i) => (
-            <div key={l} className={i !== 0 ? "md:border-l md:border-[#D3CCC5] pl-6" : "md:pl-0 pl-6"}>
-              <div className="text-3xl font-fraunces sm:text-5xl font-bold">{n}</div>
-              <div className="mt-2 text-[10px] tracking-[0.2em] font-jetbrains-mono text-[#575E6B]">{l}</div>
-            </div>
-          ))}
-        </div>
+        <Stats />
       </div>
 
-      <div className= " mt-1 md:mt-8 bg-[#171A21] text-neutral-300 text-[10px] sm:text-xs tracking-[0.25em] font-jetbrains-mono overflow-hidden">
-        <div className="flex animate-ticker whitespace-nowrap">
-          {[...ticker, ...ticker].map((t, i) => (
-            <span key={i} className="flex items-center gap-6 px-3 py-3">
-              {t}
-              <span className="text-[#3B82F6]" aria-hidden="true">✦</span>
-            </span>
-          ))}
-        </div>
-      </div>
+      <Ticker />
     </section>
   );
 }

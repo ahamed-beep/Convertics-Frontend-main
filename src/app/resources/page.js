@@ -1,5 +1,8 @@
 import FeaturedSites from "@/Components/clientside/resources/FeaturedSites";
 import GetResources from "@/Components/clientside/resources/GetResources";
+import CtaBanner from "@/Components/reuseableui/CtaBanner";
+import Footer from "@/Components/reuseableui/Footer";
+import Navbar from "@/Components/reuseableui/Navbar";
 
 export const metadata = {
   title: "Resources — Convertica Journal",
@@ -32,8 +35,11 @@ export const metadata = {
 export default function ResourcesPage() {
   return (
     <main className="min-h-screen bg-[#f5f3ee] font-sans text-gray-900">
+<Navbar/>
       <GetResources />
       <FeaturedSites />
+      <CtaBanner/>
+      <Footer/>
     </main>
   );
 }
