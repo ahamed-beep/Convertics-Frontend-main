@@ -2,7 +2,7 @@
 
 export default function GetResources() {
   return (
-    <section aria-labelledby="featured-heading" className="px-6 py-20 text-center">
+    <section aria-labelledby="featured-heading" className="px-6 pt-10 pb-10  md:py-20 text-center">
      <div className="text-center tracking-1 ">
 <h1 className="font-fraunces italic text-[#171A21] text-4xl sm:text-6xl leading-tight">
   Recommended{" "}

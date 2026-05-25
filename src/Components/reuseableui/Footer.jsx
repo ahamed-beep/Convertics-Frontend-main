@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <>
@@ -26,11 +28,13 @@ export default function Footer() {
             <p>ALL RIGHTS RESERVED.</p>
           </div>
           <nav aria-label="Footer navigation" className="flex gap-4 text-[#171A21] flex-wrap">
-            <a href="/">HOME</a>
-            <a href="/journal">JOURNAL</a>
-            <a href="/sections">SECTIONS</a>
+            <Link href="/">HOME</Link>
+            <Link href="/blog">BLOG</Link>
+            <Link href="/featured">FEATURED</Link>
             <a href="/about">ABOUT</a>
+            <a href="/resources">RESOURCES</a>
             <a href="/contact">CONTACT</a>
+
             <a href="/privacy">PRIVACY</a>
             <a href="/terms">TERMS</a>
           </nav>

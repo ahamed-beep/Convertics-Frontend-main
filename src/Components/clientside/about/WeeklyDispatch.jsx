@@ -1,0 +1,53 @@
+import Image from "next/image";
+import { dispatch, sidebarArticles } from "../Home/Data";
+
+export default function WeeklyDispatch() {
+  return (
+    <section aria-labelledby="dispatch-heading" className="bg-[#F2EEE8]">
+      <div className=" mx-auto px-4 sm:px-8 py-8 md:py-13 lg:py-20">
+     <h2 id="dispatch-heading" className="font-fraunces text-[#171A21] text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-center mb-12">
+  Most <em className="font-light italic">Recent</em>{" "}
+  <span className="text-[#3B82F6]">Blogs</span>
+</h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
+            <Image
+              src="/Images/week.webp"
+              alt="Verpex Hosting article cover"
+              width={1200}
+              height={384}
+              className="w-full sm:h-80  lg:w-220 lg:h-140 object-cover rounded-[20px]"
+            />
+            <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase mt-4 sm:mt-6">
+              TECHNOLOGY <span className="text-[#575E6B]">· APR 24 · 8 MIN READ</span>
+            </p>
+            <h3 className="mt-1 sm:mt-4 font-fraunces text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+              Verpex Hosting: Fast, Reliable &amp; Budget-Friendly
+            </h3>
+            <p className="mt-2 sm:mt-6 font-inter font-normal text-base sm:text-xl text-[#575E6B] max-w-xl">
+              A complete breakdown of Verpex hosting — performance, pricing, and whether it&apos;s the right choice for your website.
+            </p>
+            <p className="mt-2 sm:mt-6 font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">— BY M. SHAFER</p>
+          </div>
+
+          <aside aria-label="More articles" className="space-y-5">
+            {sidebarArticles.map((s) => (
+              <article key={s.title} className="flex gap-4">
+                <img src={s.img} alt="img" width={100} height={100} className="w-32 h-32 object-cover" />
+                <div>
+                  <p className="font-jetbrains-mono font-medium text-xs md:text-sm text-[#171A21] uppercase">{s.tag}</p>
+                  <h4 className="font-fraunces font-semibold text-base sm:text-xl text-[#171A21] tracking-tight leading-snug mt-1">{s.title}</h4>
+                  <p className="font-jetbrains-mono font-medium tracking-wide text-[10px] sm:text-xs uppercase mt-2 text-[#575E6B]">{s.author} · {s.read}</p>
+                </div>
+              </article>
+            ))}
+          </aside>
+        </div>
+
+       
+       
+      </div>
+    </section>
+  );
+}
