@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { sections, businessArticles } from "./Data";
+import Link from "next/link";
 
 export default function DepartmentsSection() {
   return (
@@ -12,9 +13,9 @@ export default function DepartmentsSection() {
               Six desks, one <span className=" font-fraunces italic font-thin ">obsession</span>:<br /> growth.
             </h2>
           </div>
-          <a href="/sections" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">
+          <Link href="/blog" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">
             BROWSE BY DEPARTMENT →
-          </a>
+          </Link>
         </div>
 
         <div className="bg-[#3B82F6] text-white rounded-[14px] p-4 sm:px-8 sm:py-8 shadow-sm  sm:mx-auto mt-7 md:mt-10">
@@ -41,9 +42,9 @@ export default function DepartmentsSection() {
                 <div className="flex-1 md:space-y-0.5 md:w-69 lg:w-auto leading-3">
                   <h4 className="font-fraunces font-medium text-sm sm:text-xl leading-snug tracking-tight">{a.title}</h4>
                   <p className="font-inter font-medium text-[10px] sm:text-xs opacity-70 mt-1 lg:line-clamp-2 xl:line-clamp-none">{a.desc}</p>
-                  <a href="/journal" className="font-jetbrains-mono font-medium text-[10px] sm:text-xs tracking-[0.2em] mt-2 inline-block">
+                  <Link href="/blog" className="font-jetbrains-mono font-medium text-[10px] sm:text-xs tracking-[0.2em] mt-2 inline-block">
                     READ MORE →
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}

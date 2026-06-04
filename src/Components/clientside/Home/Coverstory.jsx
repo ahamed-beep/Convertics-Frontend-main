@@ -1,6 +1,7 @@
 // components/home/CoverStory.jsx
 import Stats from "@/Components/reuseableui/Stats";
 import Ticker from "@/Components/reuseableui/Ticker";
+import Link from "next/link";
 import Image from "next/image";
 
 
@@ -61,12 +62,12 @@ export default function CoverStory() {
               — written for the people who build, ship, and sell.
             </p>
             <div className="mt-5 flex gap-3">
-              <a href="/journal" className="bg-[#3B82F6] font-inter hover:bg-blue-600 text-[#F8F6F2] text-sm px-5 py-2 rounded-full">
+              <Link href="/blog" className="bg-[#3B82F6] font-inter hover:bg-blue-600 text-[#F8F6F2] text-sm px-5 py-2 rounded-full">
                 Read the journal
-              </a>
-              <a href="/pitch" className="border border-[#171A21] font-inter text-[#171A21] text-sm px-5 py-2 rounded-full hover:bg-neutral-100">
+              </Link>
+              <Link href="/contact" className="border border-[#171A21] font-inter text-[#171A21] text-sm px-5 py-2 rounded-full hover:bg-neutral-100">
                 Pitch a story
-              </a>
+              </Link>
             </div>
           </div>
         </div>

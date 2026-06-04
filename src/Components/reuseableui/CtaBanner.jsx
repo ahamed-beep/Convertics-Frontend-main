@@ -1,5 +1,5 @@
 // components/home/CtaBanner.jsx
-
+import Link from "next/link";
 export default function CtaBanner() {
   return (
     <section aria-labelledby="cta-heading" className=" ">
@@ -18,8 +18,8 @@ to read it.
           </p>
         </div>
         <div className="flex flex-col items-start lg:items-end gap-3">
-          <a
-            href="/pitch"
+          <Link
+            href="/contact"
             className="inline-flex items-center gap-1 bg-[#F8F6F2] text-[#171A21] font-inter rounded-full pl-5 pr-4 py-2.5 text-sm  hover:bg-white/90 transition"
           >
             Pitch your essay
@@ -28,7 +28,7 @@ to read it.
                 <path d="M5 12h14" /><path d="m13 5 7 7-7 7" />
               </svg>
             </span>
-          </a>
+          </Link>
           <p className="text-[10px] mt-2 tracking-[0.25em] uppercase text-[#F8F6F280] font-jetbrains-mono">
      Avg. response time: 48 hrs
           </p>

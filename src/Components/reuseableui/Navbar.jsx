@@ -32,9 +32,9 @@ export default function Navbar() {
             <Link href="/contact">Contact</Link>
           </nav>
 
-          <a href="/subscribe" className="hidden md:inline-flex bg-[#3B82F6] hover:bg-blue-600 text-[#F8F6F2] font-inter text-sm px-4 py-2 rounded-full items-center gap-2">
+          <Link href="/contact" className="hidden md:inline-flex bg-[#3B82F6] hover:bg-blue-600 text-[#F8F6F2] font-inter text-sm px-4 py-2 rounded-full items-center gap-2">
             Subscribe <span aria-hidden="true">→</span>
-          </a>
+          </Link>
 
           {/* Hamburger */}
           <button onClick={() => setIsOpen(true)} aria-label="Open menu" className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { dispatch, sidebarArticles } from "./Data";
+import Link from "next/link";
 
 export default function WeeklyDispatch() {
   return (
@@ -12,7 +13,7 @@ export default function WeeklyDispatch() {
               This <span className="font-charm font-medium italic tracking-wide">week&apos;s</span> dispatch.
             </h2>
           </div>
-          <a href="/archive" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">FULL ARCHIVE →</a>
+          <Link href="/resources" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B] mt-2">FULL ARCHIVE →</Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
