@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Card({ post }) {
   const ref = useRef(null);
@@ -52,13 +53,13 @@ export default function Card({ post }) {
         {post.excerpt}
       </p>
 
-      <a
-        href={`/blog/${post.id}`}
+      <Link
+        href="/blog/"
         aria-label={`Read more about ${post.title}`}
         className="mt-4 inline-flex items-center gap-1.5 text-sm tracking-[0.10em] uppercase text-[#3B82F6] font-bold hover:gap-2.5 transition-all"
       >
         Read more <ArrowRight className="w-4 h-4" />
-      </a>
+      </Link>
     </article>
   );
 }

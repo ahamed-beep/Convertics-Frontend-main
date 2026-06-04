@@ -1,14 +1,26 @@
 "use client";
 
+import api from "@/Components/lib/api";
 import { useState } from "react";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      const { data } = await api.post('/api/contact', form);
+      if (data.success) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -16,8 +28,7 @@ export default function ContactForm() {
   };
 
   return (
-
-    <section className=" px-7 md:px-15 py-12">
+    <section className="px-7 md:px-15 py-12">
 
       {/* Hero text */}
       <div className="text-center">
@@ -35,10 +46,9 @@ export default function ContactForm() {
 
       <hr className="w-full my-10 px-6 border-[#171A21]" />
 
-      {/* items-stretch — dono column barabar height */}
       <div className="mx-auto grid md:pt-15 gap-10 md:grid-cols-2 md:items-stretch">
 
-        {/* Image — h-full so it fills column height */}
+        {/* Image */}
         <div className="overflow-hidden rounded-lg h-full">
           <img
             src="/Images/contact/contact.webp"
@@ -81,7 +91,8 @@ export default function ContactForm() {
                   autoComplete="name"
                   value={form.name}
                   onChange={handleChange}
-                  className="w-full  border border-[#171A2180] px-4 py-4 text-xs tracking-widest text-[#575E6B] font-semibold font-jetbrains-mono outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition"
+                  disabled={loading}
+                  className="w-full border border-[#171A2180] px-4 py-4 text-xs tracking-widest text-[#575E6B] font-semibold font-jetbrains-mono outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition disabled:opacity-50"
                 />
               </div>
 
@@ -96,7 +107,8 @@ export default function ContactForm() {
                   autoComplete="email"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full  px-4 py-4 text-xs tracking-widest  outline-none text-[#575E6B] font-semibold focus:ring-2 border border-[#171A2180]  focus:ring-blue-400/20 transition"
+                  disabled={loading}
+                  className="w-full px-4 py-4 text-xs tracking-widest outline-none text-[#575E6B] font-semibold focus:ring-2 border border-[#171A2180] focus:ring-blue-400/20 transition disabled:opacity-50"
                 />
               </div>
 
@@ -109,16 +121,44 @@ export default function ContactForm() {
                   required
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full h-full min-h-[120px] resize-none  border border-[#171A2180] px-4 py-4 text-xs tracking-widest text-[#575E6B] font-jetbrains-mono  outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition"
+                  disabled={loading}
+                  className="w-full h-full min-h-[120px] resize-none border border-[#171A2180] px-4 py-4 text-xs tracking-widest text-[#575E6B] font-jetbrains-mono outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition disabled:opacity-50"
                 />
               </div>
 
               <div className="flex justify-start">
                 <button
                   type="submit"
-                  className="rounded-full bg-[#3B82F6] px-8 py-2.5 text-sm font-medium text-[#F8F6F2] hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+                  disabled={loading}
+                  className="rounded-full bg-[#3B82F6] px-8 py-2.5 text-sm font-medium text-[#F8F6F2] hover:bg-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed flex items-center gap-2"
                 >
-                  Submit
+                  {loading ? (
+                    <>
+                      <svg
+                        className="animate-spin h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 12 0 12 12h-4z"
+                        />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
               </div>
             </form>

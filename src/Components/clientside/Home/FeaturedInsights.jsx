@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { featured } from "./Data";
+import Link from "next/link";
 
 export default function FeaturedInsights() {
   return (
@@ -12,7 +13,7 @@ export default function FeaturedInsights() {
               Featured <span className="font-light italic">Insights</span>
             </h2>
           </div>
-          <a href="/journal" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B]">SEE ALL →</a>
+          <Link href="/featured" className="text-[10px] sm:text-xs tracking-[0.2em] font-jetbrains-mono text-[#575E6B]">SEE ALL →</Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-8">
@@ -27,9 +28,9 @@ export default function FeaturedInsights() {
               />
               <h3 className="mt-3 sm:mt-4 font-fraunces font-semibold text-2xl sm:text-3xl text-[#171A21] leading-9 tracking-tight">{f.title}</h3>
               <p className="mt-1 sm:mt-2 font-inter font-medium text-sm sm:text-base text-[#575E6B]">{f.desc}</p>
-              <a href="/journal" className="mt-3 sm:mt-4 font-jetbrains-mono font-semibold inline-block text-sm sm:text-base tracking-widest text-[#3B82F6]">
+              <Link href="/blog" className="mt-3 sm:mt-4 font-jetbrains-mono font-semibold inline-block text-sm sm:text-base tracking-widest text-[#3B82F6]">
                 READ MORE →
-              </a>
+              </Link>
             </article>
           ))}
         </div>
