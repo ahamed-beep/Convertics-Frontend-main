@@ -1,4 +1,6 @@
 import ContactsSection from "@/Components/adminside/ContactsSection";
+import BlogManager from "@/Components/adminside/BlogManager";
+import ResourceManager from "@/Components/adminside/ResourceManager";
 
 export default function DashboardOverview({
   stats,
@@ -12,7 +14,6 @@ export default function DashboardOverview({
 }) {
   return (
     <div className="space-y-5">
-      {/* Title */}
       <div>
         <p className="font-jetbrains-mono text-[10px] tracking-[0.2em] text-neutral-400 mb-1">
           OVERVIEW
@@ -22,7 +23,6 @@ export default function DashboardOverview({
         </h2>
       </div>
 
-      {/* Stats Cards — 1 col mobile, 3 col desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
           { label: "TOTAL SUBMISSIONS", value: stats.total, sub: "All time", blue: false },
@@ -50,7 +50,10 @@ export default function DashboardOverview({
         ))}
       </div>
 
-      {/* Contacts Section */}
+      <BlogManager />
+
+      <ResourceManager />
+
       <ContactsSection
         contacts={contacts}
         page={page}
