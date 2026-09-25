@@ -1,88 +1,43 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Card from "../../reuseableui/Card";
 import Dots from "../../reuseableui/Dots";
-
-const POSTS = [
-  {
-    id: 1,
-    title: "The Future of Business: Trends You Can't Ignore",
-    excerpt: "AI, remote work, and digital transformation are reshaping industries. Here's what you need to know — and how to adapt.",
-    category: "B2B",
-    image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 2,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-      image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 3,
-    title: "Branding That Converts: Build a Business People Trust",
-    excerpt: "Go beyond logos — learn how to create a brand identity that connects, converts, and lasts.",
-    category: "Design",
-    image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 4,
-    title: "Branding That Converts: Build a Business People Trust",
-    excerpt: "Go beyond logos — learn how to create a brand identity that connects, converts, and lasts.",
-    category: "Design",
-      image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 5,
-    title: "The Future of Business: Trends You Can't Ignore",
-    excerpt: "AI, remote work, and digital transformation are reshaping industries. Here's what you need to know — and how to adapt.",
-    category: "B2B",
-    image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 6,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-      image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 7,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-       image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 8,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-        image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 9,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-    image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 10,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-        image: "/Images/blog/blog1.webp",
-  },
-];
+import api from "@/Components/lib/api";
 
 const DESKTOP_PER_PAGE = 6;
 
 export default function InsightsSection() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(POSTS.length / DESKTOP_PER_PAGE);
-  const slice = POSTS.slice(page * DESKTOP_PER_PAGE, page * DESKTOP_PER_PAGE + DESKTOP_PER_PAGE);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await api.get("/api/blogs");
+        const data = res.data?.data || res.data || [];
+        const mapped = data.map((b) => ({
+          id: b.id,
+          title: b.title,
+          excerpt: b.excerpt,
+          category: b.category,
+          image: b.image,
+          slug: b.slug,
+        }));
+        setPosts(mapped);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
+  const totalPages = Math.max(1, Math.ceil(posts.length / DESKTOP_PER_PAGE));
+  const safePage = Math.min(page, totalPages - 1);
+  const slice = posts.slice(safePage * DESKTOP_PER_PAGE, safePage * DESKTOP_PER_PAGE + DESKTOP_PER_PAGE);
 
   // Touch swipe
   const touchStartX = useRef(null);
@@ -95,12 +50,10 @@ export default function InsightsSection() {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
 
-    if (diff > 50 && page < totalPages - 1) {
-      // swipe left → next page
-      setPage((p) => p + 1);
-    } else if (diff < -50 && page > 0) {
-      // swipe right → prev page
-      setPage((p) => p - 1);
+    if (diff > 50 && safePage < totalPages - 1) {
+      setPage(safePage + 1);
+    } else if (diff < -50 && safePage > 0) {
+      setPage(safePage - 1);
     }
 
     touchStartX.current = null;
@@ -134,15 +87,23 @@ export default function InsightsSection() {
       </div>
 
       <div className="mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-7 md:gap-4">
-        {slice.map((p) => (
-          <Card key={`ins-${p.id}-${page}`} post={p} />
-        ))}
+        {loading ? (
+          <p role="status" className="col-span-full text-center text-[#3a3f47] py-12">
+            Loading articles...
+          </p>
+        ) : slice.length > 0 ? (
+          slice.map((p) => <Card key={`ins-${p.id}-${safePage}`} post={p} />)
+        ) : (
+          <p role="status" className="col-span-full text-center text-[#3a3f47] py-12">
+            No articles yet.
+          </p>
+        )}
       </div>
 
       {totalPages > 1 && (
         <Dots
           count={totalPages}
-          active={page}
+          active={safePage}
           onChange={setPage}
           className="text-[#3B82F6] mt-8"
         />

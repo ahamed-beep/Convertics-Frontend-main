@@ -1,98 +1,55 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Dots from "../../reuseableui/Dots";
 import Card from "../../reuseableui/Card";
 import { Search } from "lucide-react";
+import api from "@/Components/lib/api";
 
-const POSTS = [
-  {
-    id: 1,
-    title: "The Future of Business: Trends You Can't Ignore",
-    excerpt: "AI, remote work, and digital transformation are reshaping industries. Here's what you need to know — and how to adapt.",
-    category: "B2B",
-     image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 2,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-    image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 3,
-    title: "Branding That Converts: Build a Business People Trust",
-    excerpt: "Go beyond logos — learn how to create a brand identity that connects, converts, and lasts.",
-    category: "Design",
-      image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 4,
-    title: "Branding That Converts: Build a Business People Trust",
-    excerpt: "Go beyond logos — learn how to create a brand identity that connects, converts, and lasts.",
-    category: "Design",
-       image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 5,
-    title: "The Future of Business: Trends You Can't Ignore",
-    excerpt: "AI, remote work, and digital transformation are reshaping industries. Here's what you need to know — and how to adapt.",
-    category: "B2B",
-    image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 6,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-    image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 7,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-       image: "/Images/blog/blog1.webp",
-  },
-  {
-    id: 8,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-       image: "/Images/blog/blog2.webp",
-  },
-  {
-    id: 9,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-       image: "/Images/blog/blog3.webp",
-  },
-  {
-    id: 10,
-    title: "Mastering Productivity as a Business Owner",
-    excerpt: "Boost your efficiency with proven systems, time management hacks, and smarter workflows.",
-    category: "Marketing",
-      image: "/Images/blog/blog1.webp",
-  },
-];
 
 const CATEGORIES = ["Marketing", "B2B", "Design"];
 
 export default function BrowseSection() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [activeCats, setActiveCats] = useState([]);
   const [browsePage, setBrowsePage] = useState(0);
 
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await api.get("/api/blogs");
+        const data = res.data?.data || res.data || [];
+        const mapped = data.map((b) => ({
+          id: b.id,
+          title: b.title,
+          excerpt: b.excerpt,
+          category: b.category,
+          image: b.image,
+          slug: b.slug,
+        }));
+        setPosts(mapped);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return POSTS.filter((p) => {
+    return posts.filter((p) => {
       const matchCat = activeCats.length === 0 || activeCats.includes(p.category);
-      const matchSearch = q === "" || p.title.toLowerCase().includes(q) || p.excerpt.toLowerCase().includes(q);
+      const matchSearch =
+        q === "" ||
+        p.title?.toLowerCase().includes(q) ||
+        p.excerpt?.toLowerCase().includes(q);
       return matchCat && matchSearch;
     });
-  }, [search, activeCats]);
+  }, [search, activeCats, posts]);
 
   const browsePages = Math.max(1, Math.ceil(filtered.length / 3));
   const safePage = Math.min(browsePage, browsePages - 1);
@@ -100,7 +57,9 @@ export default function BrowseSection() {
 
   const toggleCat = (cat) => {
     setBrowsePage(0);
-    setActiveCats((prev) => prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]);
+    setActiveCats((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
+    );
   };
 
   return (
@@ -116,7 +75,6 @@ export default function BrowseSection() {
           Find content based on your interests. From business strategies to software reviews and industry trends, explore topics that help you grow and make informed decisions.
         </p>
 
-        {/* Search — max-w barah kar diya */}
         <div className="mt-6 max-w-3xl mx-auto relative">
           <label htmlFor="blog-search" className="sr-only">Search articles</label>
           <input
@@ -132,7 +90,7 @@ export default function BrowseSection() {
             aria-label="Submit search"
             className="absolute right-0 top-1/2 -translate-y-1/2 w-12.5 h-12.5 rounded-full bg-[#3B82F6] text-white grid place-items-center hover:bg-[#1a3fd9] transition"
           >
-         <Search />
+            <Search />
           </button>
         </div>
 
@@ -158,7 +116,11 @@ export default function BrowseSection() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        {browseSlice.length > 0 ? (
+        {loading ? (
+          <p role="status" className="col-span-full text-center text-[#3a3f47] py-12">
+            Loading articles...
+          </p>
+        ) : browseSlice.length > 0 ? (
           browseSlice.map((p) => <Card key={`br-${p.id}-${safePage}`} post={p} />)
         ) : (
           <p role="status" className="col-span-full text-center text-[#3a3f47] py-12">
